@@ -1,10 +1,10 @@
 {
   "name": "very-hard-project",
   "version": "1.0.0",
-  "description": "my first project which is tougher than expected",
-  "main": "index.js",
+  "description": "fourth attempt of my first project",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
