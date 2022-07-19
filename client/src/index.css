@@ -22,6 +22,9 @@ body {
   line-height: 1.5;
   font-size: 0.875rem;
 }
+ul {
+  list-style: none;
+}
 div {
   border: 1px solid gray;
 }
@@ -43,16 +46,18 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 2rem 2.5rem;
+  padding: 0.5rem 2.5rem;
 }
 .header div {
   text-transform: uppercase;
   font-weight: bold;
+  padding: 0.5rem 4rem;
   border: none;
-  padding: 1rem 10%;
   border-radius: 50%;
 }
-.header div:hover {
+.nav-logo:hover,
+.menu li:hover,
+.nav-links:hover {
   color: var(--vivid-sky-blue);
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#383838+19,57c4e5+68 */
   background: #383838; /* Old browsers */
@@ -76,7 +81,17 @@ nav {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#383838', endColorstr='#57c4e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
-@media screen and (max-width: 800px) {
+.menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+}
+.menu li {
+  padding: 0 2rem;
+}
+
+@media screen and (max-width: 967px) {
   .header {
     visibility: hidden;
   }
