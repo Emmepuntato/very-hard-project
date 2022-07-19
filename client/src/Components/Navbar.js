@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { BiMenu } from 'react-icons/bi'
+import { BsChatLeft } from 'react-icons/bs'
+import Sidebar from './Sidebar'
 
 import Menu from './Menu'
+
 function Navbar() {
   const [isSidebar, setIsSidebar] = useState(false)
   const navbar = useRef()
@@ -18,7 +21,8 @@ function Navbar() {
           onClick={() => {
             setIsSidebar(!isSidebar)
           }}
-        />
+        ></BiMenu>
+        <Sidebar isSidebar={isSidebar} />
       </div>
     </nav>
   )

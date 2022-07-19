@@ -12,5 +12,5 @@ app.get('/api', ({ req, res }) => {
 })
 
 app.listen(PORT, () => {
-  console.log('server listenint on port 4500')
+  console.log('server listening on port 4500')
 })

@@ -6,7 +6,10 @@
   --tea-green: #ddf9c1ff;
   --mandarin: #ef8354ff;
 }
-
+.null,
+#null {
+  display: none;
+}
 body {
   background: linear-gradient(215deg, #ddf9c1ff, #ef8354ff);
   background-repeat: no-repeat;
@@ -43,10 +46,11 @@ nav {
 }
 
 .header {
+  position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 0.5rem 2.5rem;
+  padding: 2.5rem 2.5rem;
 }
 .header div {
   text-transform: uppercase;
@@ -91,10 +95,35 @@ nav {
   padding: 0 2rem;
 }
 
+.sidebar-icon {
+  display: none;
+  width: 2rem;
+  height: 2rem;
+}
+
+#sidebar {
+  position: absolute;
+  border-radius: 0.3rem;
+  right: 5rem;
+  bottom: -16rem;
+  background: antiquewhite;
+  min-height: fit-content;
+  padding: 0;
+}
+
+#sidebar ul {
+  display: flex;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+#sidebar li {
+  padding: 2rem 1rem;
+}
+
 @media screen and (max-width: 967px) {
-  .header {
-    visibility: hidden;
-  }
   .nav-menu {
     display: none;
   }
@@ -103,6 +132,21 @@ nav {
   }
   .nav-logo {
     visibility: visible;
+  }
+  .sidebar-icon {
+    display: block;
+    position: absolute;
+    right: 5rem;
+    transition: 0.5s;
+  }
+  .sidebar-icon-show {
+    display: block;
+    position: absolute;
+    right: 5rem;
+    width: 2rem;
+    height: 2rem;
+    transition: 0.5s;
+    transform: rotate(90deg);
   }
 }
 
