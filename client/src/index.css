@@ -100,13 +100,26 @@ nav {
   width: 2rem;
   height: 2rem;
 }
+.vignetta{
+    transform: rotate(180deg);
+    width: 10rem;
+}
 
+@media screen and (min-width: 967px) {
+#sidebar {
+    display: none;
+}
+.sidebar-icon-show {
+    display: none;
+
+  }
+}
 #sidebar {
   position: absolute;
   border-radius: 0.3rem;
   right: 5rem;
-  bottom: -16rem;
-  background: antiquewhite;
+  bottom: -17rem;
+  background: rgb(240, 163, 129);
   min-height: fit-content;
   padding: 0;
 }
@@ -120,7 +133,9 @@ nav {
   align-items: center;
 }
 #sidebar li {
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
+  margin: 1rem;
+  border: 0.2rem solid black;
 }
 
 @media screen and (max-width: 967px) {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { BiMenu } from 'react-icons/bi'
 import { BsChatLeft } from 'react-icons/bs'
+
 import Sidebar from './Sidebar'
 
 import Menu from './Menu'
@@ -22,7 +23,7 @@ function Navbar() {
             setIsSidebar(!isSidebar)
           }}
         ></BiMenu>
-        <Sidebar isSidebar={isSidebar} />
+        <BsChatLeft className='vignetta' size={10}><Sidebar isSidebar={isSidebar} /></BsChatLeft>
       </div>
     </nav>
   )
