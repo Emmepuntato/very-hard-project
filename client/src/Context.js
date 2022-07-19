@@ -1,9 +1,17 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, useReducer } from 'react'
+import localData from './local-data/menu'
 
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
-  return <AppContext.Provider value=''>{children}</AppContext.Provider>
+  const initialState = {
+    data: localData,
+  }
+  const reducer = {}
+
+  const [state, action] = useReducer(reducer, initialState)
+
+  return <AppContext.Provider value={state}>{children}</AppContext.Provider>
 }
 
 export const useGlobalContex = () => {
