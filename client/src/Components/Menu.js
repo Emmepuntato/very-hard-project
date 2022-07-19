@@ -1,25 +1,14 @@
 import React from 'react'
-
-const fetchData = async () => {
-  try {
-    const response = await fetch('../../public/local-data/menu.json')
-    const data = await response.json()
-    console.log(data)
-    console.log('menu')
-  } catch (err) {
-    console.log(err)
-  }
-}
+import data from '../local-data/menu'
 
 export default function Menu() {
   return (
-    <div
-      className='nav-menu'
-      onClick={() => {
-        fetchData()
-      }}
-    >
-      menu
+    <div className='nav-menu'>
+      <ul className='menu'>
+        {data.menu.map((item, index) => {
+          return <li key={index}>{item.type}</li>
+        })}
+      </ul>
     </div>
   )
 }
