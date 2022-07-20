@@ -1,13 +1,30 @@
+import {
+  TiSocialFacebook,
+  TiSocialTwitter,
+  TiSocialYoutube,
+} from 'react-icons/ti'
 const data = {
   menu: [
-    { type: 'contacts', data: '' },
-    { type: 'about us', data: '' },
-    { type: 'privacy', data: '' },
+    { type: 'contacts', data: '', link: '/contacts' },
+    { type: 'about us', data: '', link: '/about' },
+    { type: 'privacy', data: '', link: '/privacy' },
   ],
   links: [
-    { type: 'facebook', link: '', logo: '' },
-    { type: 'youtube', link: '', logo: '' },
-    { type: 'twitter', link: '', logo: '' },
+    {
+      type: 'facebook',
+      link: 'www.facebook.com',
+      logo: <TiSocialFacebook size={30} />,
+    },
+    {
+      type: 'youtube',
+      link: 'www.youtube.com',
+      logo: <TiSocialYoutube size={30} />,
+    },
+    {
+      type: 'twitter',
+      link: 'www.twitter.com',
+      logo: <TiSocialTwitter size={30} />,
+    },
   ],
 }
 

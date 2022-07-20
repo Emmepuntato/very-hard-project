@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Sara",
+    "bio": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, veritatis",
+    "img": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=800"
+  },
+  {
+    "name": "Mark",
+    "bio": "accusantium explicabo dolore laboriosam maiores nihil perspiciatis officiis ut quos?",
+    "img": "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=800"
+  }
+]

@@ -31,6 +31,12 @@ ul {
 div {
   border: 1px solid gray;
 }
+a {
+  text-decoration: none;
+  text-transform: none;
+  color: inherit;
+  text-transform: capitalize;
+}
 
 #root .App {
   height: 50rem;
@@ -61,7 +67,7 @@ nav {
 }
 .nav-logo:hover,
 .menu li:hover,
-.nav-links:hover {
+.nav-links li:hover {
   color: var(--vivid-sky-blue);
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#383838+19,57c4e5+68 */
   background: #383838; /* Old browsers */
@@ -95,36 +101,56 @@ nav {
   padding: 0 2rem;
 }
 
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  width: 16rem;
+  padding: 0;
+}
+.nav-links li {
+  width: 4rem;
+  height: 2rem;
+}
+
 .sidebar-icon {
   display: none;
   width: 2rem;
   height: 2rem;
 }
-.vignetta{
-    transform: rotate(180deg);
-    width: 10rem;
-}
 
 @media screen and (min-width: 967px) {
-#sidebar {
+  #sidebar {
     display: none;
-}
-.sidebar-icon-show {
+  }
+  .sidebar-icon-show {
     display: none;
-
   }
 }
 #sidebar {
   position: absolute;
   border-radius: 0.3rem;
-  right: 5rem;
-  bottom: -17rem;
+  right: 3rem;
+  bottom: -25rem;
   background: rgb(240, 163, 129);
   min-height: fit-content;
   padding: 0;
+  transition: 0.5s;
 }
-
-#sidebar ul {
+#social-icons {
+  display: flex;
+  width: inherit;
+  height: inherit;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  left: -0.6em;
+  position: relative;
+}
+.sidebar-menu {
   display: flex;
   padding: 0.5rem;
   margin: 0.5rem;
@@ -133,9 +159,13 @@ nav {
   align-items: center;
 }
 #sidebar li {
+  border-radius: 0.3rem;
   padding: 1rem 1rem;
   margin: 1rem;
   border: 0.2rem solid black;
+}
+#sidebar-social {
+  padding: 0;
 }
 
 @media screen and (max-width: 967px) {
@@ -151,18 +181,21 @@ nav {
   .sidebar-icon {
     display: block;
     position: absolute;
-    right: 5rem;
+    right: 3rem;
     transition: 0.5s;
   }
   .sidebar-icon-show {
     display: block;
     position: absolute;
-    right: 5rem;
+    right: 3rem;
     width: 2rem;
     height: 2rem;
     transition: 0.5s;
     transform: rotate(90deg);
   }
+}
+
+.about-page {
 }
 
 .homepage {

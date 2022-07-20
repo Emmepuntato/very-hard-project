@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { BiMenu } from 'react-icons/bi'
-import { BsChatLeft } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 
 import Sidebar from './Sidebar'
 
@@ -14,16 +14,19 @@ function Navbar() {
   return (
     <nav>
       <div className='header' ref={navbar}>
-        <div className='nav-logo'>logo</div>
+        <div className='nav-logo'>
+          <Link to='/'>logo</Link>
+        </div>
         <Menu />
-        <div className='nav-links'>links</div>
-        <BiMenu
-          className={`${isSidebar ? 'sidebar-icon-show' : 'sidebar-icon'}`}
-          onClick={() => {
-            setIsSidebar(!isSidebar)
-          }}
-        ></BiMenu>
-        <BsChatLeft className='vignetta' size={10}><Sidebar isSidebar={isSidebar} /></BsChatLeft>
+        <div className='sidebar-icon'>
+          <BiMenu
+            className={`${isSidebar ? 'sidebar-icon-show' : 'sidebar-icon'}`}
+            onClick={() => {
+              setIsSidebar(!isSidebar)
+            }}
+          ></BiMenu>
+          <Sidebar isSidebar={isSidebar} />
+        </div>
       </div>
     </nav>
   )

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useReducer } from 'react'
+import React, { useContext, useReducer } from 'react'
 import localData from './local-data/menu'
 
 const AppContext = React.createContext()
@@ -8,7 +8,6 @@ const AppProvider = ({ children }) => {
     data: localData,
   }
   const reducer = {}
-
   const [state, action] = useReducer(reducer, initialState)
 
   return <AppContext.Provider value={state}>{children}</AppContext.Provider>
