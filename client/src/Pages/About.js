@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
 function About() {
-  const [profile, setProfile] = useState()
+  const [profile, setProfile] = useState([])
 
   const fetchEmployees = async () => {
     try {
-      const response = await fetch('/about')
-      //const data = await response.json()
-      setProfile(response.data)
+      const response = await fetch('/api/about')
+      const data = await response.json()
+      setProfile(data)
     } catch (err) {}
   }
 
@@ -25,8 +25,8 @@ function About() {
           return (
             <div key={index}>
               <img src={item.img} alt='image' />
-              <p>{profile.name}</p>
-              <div>{profile.bio}</div>
+              <p>{item.name}</p>
+              <div>{item.bio}</div>
             </div>
           )
         })}
