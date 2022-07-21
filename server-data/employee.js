@@ -1,7 +1,7 @@
 const employee = [
   {
     name: 'Sara',
-    bio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, veritatis',
+    bio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, veritatisLorem ipsum dolor sit amet consectetur, adipisicing elit. Atque ea animi incidunt repudiandae sint libero facilis mollitia, iure dolores vitae!',
     img: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
   {

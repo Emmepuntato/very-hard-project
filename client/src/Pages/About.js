@@ -23,10 +23,12 @@ function About() {
       <ul>
         {profile.map((item, index) => {
           return (
-            <div key={index}>
+            <div key={index} className='profile-box'>
               <img src={item.img} alt='image' />
-              <p>{item.name}</p>
-              <div>{item.bio}</div>
+              <div className='profile-text'>
+                <p>{item.name}</p>
+                <div>{item.bio}</div>
+              </div>
             </div>
           )
         })}
