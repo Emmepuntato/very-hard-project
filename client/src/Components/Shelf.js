@@ -4,11 +4,12 @@ function Shelf() {
   const API_KEY = 'AIzaSyCstauv1GWKGRuQ5XyUWfSsy9_SUXbFy7I'
   const [books, setBooks] = useState([])
 
+
   useEffect(() => {
     const fetchBooks = async () => {
       try {
         const response = await fetch(
-          `https://www.googleapis.com/books/v1/volumes?q=flowers&key=AIzaSyCstauv1GWKGRuQ5XyUWfSsy9_SUXbFy7I`
+          `https://www.googleapis.com/books/v1/volumes?q=boats&key=${API_KEY}`
         )
         if (!response || undefined) console.log('errore no response')
         const data = await response.json()
@@ -27,7 +28,7 @@ function Shelf() {
         const { authors, categories, imageLinks, publisher, title } =
           item.volumeInfo
         let authorsList
-        console.log(authors)
+
         if (authors !== undefined) {
           authorsList = authors.join(', ')
         }
@@ -46,7 +47,7 @@ function Shelf() {
                 overflow: 'hidden',
               }}
             >
-              {title}
+              {title.slice(0,35)}
             </p>
             <p style={{ fontStyle: 'italic', margin: '0.2rem' }}>
               {authorsList || authors}

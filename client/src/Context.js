@@ -1,21 +1,22 @@
 import React, { useContext, useReducer } from 'react'
 import localData from './local-data/menu'
-
+import {reducer} from './local-data/reducer'
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
   const initialState = {
     data: localData,
+    bookSearchInput:''
   }
-  const reducer = {}
-  const [state, action] = useReducer(reducer, initialState)
+  
+  const [state, dispatch] = useReducer(reducer, initialState)
 
-  function stringCutter(array, maxLength, separator) {
-    return array.splice(0, maxLength).join(separator)
+  const searchBookAPI = (state)=>{
+    dispatch({type:"SEARCH", ...state})
   }
 
   return (
-    <AppContext.Provider value={{ ...state, stringCutter }}>
+    <AppContext.Provider value={{ ...state }}>
       {children}
     </AppContext.Provider>
   )
