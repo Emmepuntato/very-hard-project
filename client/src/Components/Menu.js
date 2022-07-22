@@ -22,7 +22,9 @@ export default function Menu() {
           {data.links.map((item, index) => {
             return (
               <li key={index}>
-                <Link to={item.link}>{item.logo}</Link>
+                <a href={item.link} target='blank' rel='noreferrer'>
+                  {item.logo}
+                </a>
               </li>
             )
           })}

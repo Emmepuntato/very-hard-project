@@ -12,17 +12,17 @@ const data = {
   links: [
     {
       type: 'facebook',
-      link: 'www.facebook.com',
+      link: 'https://www.facebook.com',
       logo: <TiSocialFacebook size={30} />,
     },
     {
       type: 'youtube',
-      link: 'www.youtube.com',
+      link: 'https://www.youtube.com',
       logo: <TiSocialYoutube size={30} />,
     },
     {
       type: 'twitter',
-      link: 'www.twitter.com',
+      link: 'https://www.twitter.com',
       logo: <TiSocialTwitter size={30} />,
     },
   ],

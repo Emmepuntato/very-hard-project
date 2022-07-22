@@ -10,7 +10,15 @@ const AppProvider = ({ children }) => {
   const reducer = {}
   const [state, action] = useReducer(reducer, initialState)
 
-  return <AppContext.Provider value={state}>{children}</AppContext.Provider>
+  function stringCutter(array, maxLength, separator) {
+    return array.splice(0, maxLength).join(separator)
+  }
+
+  return (
+    <AppContext.Provider value={{ ...state, stringCutter }}>
+      {children}
+    </AppContext.Provider>
+  )
 }
 
 export const useGlobalContex = () => {

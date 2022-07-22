@@ -10,4 +10,8 @@ router
   .post(() => {})
   .get(fetchData)
 
+router.route('/').get((req, res) => {
+  console.log('router working, api working')
+  res.sendStatus(200)
+})
 module.exports = router
