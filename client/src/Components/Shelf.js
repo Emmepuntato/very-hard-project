@@ -5,7 +5,6 @@ function Shelf() {
   const { bookSearchInput, bookSearchFilter } = useGlobalContex()
   const API_KEY = 'AIzaSyCstauv1GWKGRuQ5XyUWfSsy9_SUXbFy7I'
   const [books, setBooks] = useState([])
-  console.log('bookSearchInput: ', typeof bookSearchInput, ' ', bookSearchInput)
 
   const customURL = `https://www.googleapis.com/books/v1/volumes?q=${
     bookSearchInput.term || 'welcome'
