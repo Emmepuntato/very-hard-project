@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import { useGlobalContex } from '../Context'
 
 function Search() {
+  const { searchBookAPI } = useGlobalContex()
   const [inputText, setInputText] = useState('')
-  const [searchParam, setSearchParam] = useState('')
 
   const handleChange = (e) => {
     setInputText(e.target.value)
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    setSearchParam(inputText)
+    searchBookAPI(inputText)
   }
   return (
     <section className='form'>

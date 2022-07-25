@@ -1,32 +1,69 @@
 import React, { useEffect, useState } from 'react'
+import { useGlobalContex } from '../Context'
 
 function Shelf() {
+  const { bookSearchInput, bookSearchFilter } = useGlobalContex()
   const API_KEY = 'AIzaSyCstauv1GWKGRuQ5XyUWfSsy9_SUXbFy7I'
   const [books, setBooks] = useState([])
+  console.log('bookSearchInput: ', typeof bookSearchInput, ' ', bookSearchInput)
 
+  const customURL = `https://www.googleapis.com/books/v1/volumes?q=${
+    bookSearchInput.term || 'welcome'
+  }&key=${API_KEY}`
+  console.log('API at: ', customURL)
+  const altThumbnail =
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
 
   useEffect(() => {
+    console.log('input', bookSearchInput)
+
     const fetchBooks = async () => {
       try {
-        const response = await fetch(
-          `https://www.googleapis.com/books/v1/volumes?q=boats&key=${API_KEY}`
-        )
+        const response = await fetch(customURL)
         if (!response || undefined) console.log('errore no response')
         const data = await response.json()
         setBooks(data.items)
+        // console.log('API at: ', customURL)
+        // console.log('fetched items:', data.totalItems)
       } catch (error) {
         console.log(error)
       }
     }
     //attenzione! l'avevo messa nella parentesi del catch e non del useEffect
     fetchBooks()
-  }, [])
+  }, [customURL])
+
+  // useEffect(() => {
+  //   const { author, publisher, genre, lang, year } = bookSearchFilter
+  //   console.log('input term', bookSearchInput.term)
+  //   const filteredURL = `https://www.googleapis.com/books/v1/volumes?q=${bookSearchInput.term}+inauthor:${author}+inpublisher:${publisher}+subject:${genre}&key=${API_KEY}`
+  //   console.log('bookSearchFilter', bookSearchFilter)
+  //   const fetchBooks = async () => {
+  //     try {
+  //       const response = await fetch(filteredURL)
+  //       if (!response || undefined) console.log('errore no response')
+  //       const data = await response.json()
+  //       setBooks(data.items)
+  //       console.log('API at: ', filteredURL)
+  //       console.log('fetched items:', data.totalItems)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   //attenzione! l'avevo messa nella parentesi del catch e non del useEffect
+  //   fetchBooks()
+  // }, [bookSearchFilter])
 
   return (
     <div className='shelf-grid'>
       {books.map((item, index) => {
-        const { authors, categories, imageLinks, publisher, title } =
-          item.volumeInfo
+        const {
+          authors,
+          categories = '---//---',
+          imageLinks = altThumbnail,
+          publisher = '---//---',
+          title = '---//---',
+        } = item.volumeInfo
         let authorsList
 
         if (authors !== undefined) {
@@ -35,7 +72,7 @@ function Shelf() {
         return (
           <div className='shelf-book' key={index}>
             <img
-              src={imageLinks.smallThumbnail}
+              src={imageLinks.smallThumbnail || ''}
               alt='thumbnail'
               style={{ width: '12rem', height: '16rem' }}
             />
@@ -47,7 +84,7 @@ function Shelf() {
                 overflow: 'hidden',
               }}
             >
-              {title.slice(0,35)}
+              {title.substring(0, 35)}
             </p>
             <p style={{ fontStyle: 'italic', margin: '0.2rem' }}>
               {authorsList || authors}

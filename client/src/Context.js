@@ -1,22 +1,33 @@
 import React, { useContext, useReducer } from 'react'
 import localData from './local-data/menu'
-import {reducer} from './local-data/reducer'
+import { reducer } from './local-data/reducer'
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
   const initialState = {
     data: localData,
-    bookSearchInput:''
+    bookSearchInput: '',
+    bookSearchFilter: {
+      author: '',
+      publisher: '',
+      genre: '',
+      language: '',
+      year: new Date().getFullYear(),
+    },
   }
-  
+
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const searchBookAPI = (state)=>{
-    dispatch({type:"SEARCH", ...state})
+  const searchBookAPI = (term) => {
+    dispatch({ type: 'SEARCH', payload: { term } })
+  }
+
+  const filterBookAPI = (filterList) => {
+    dispatch({ type: 'FILTER', payload: { filterList } })
   }
 
   return (
-    <AppContext.Provider value={{ ...state }}>
+    <AppContext.Provider value={{ ...state, searchBookAPI, filterBookAPI }}>
       {children}
     </AppContext.Provider>
   )
