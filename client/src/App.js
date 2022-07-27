@@ -5,6 +5,7 @@ import Home from './Pages/Home'
 import About from './Pages/About'
 import Contacts from './Pages/Contacts'
 import BookPage from './Pages/Books'
+import SingleBook from './Components/SingleBook'
 
 function App() {
   const [data, setData] = useState()
@@ -32,6 +33,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/contacts' element={<Contacts />} />
         <Route path='/books' element={<BookPage />} />
+        <Route path='/books/:id' element={<SingleBook />} />
       </Routes>
     </Router>
   )
