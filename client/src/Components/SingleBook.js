@@ -4,7 +4,7 @@ import { useGlobalContex } from '../Context'
 const API_KEY = 'AIzaSyCstauv1GWKGRuQ5XyUWfSsy9_SUXbFy7I'
 
 function SingleBook() {
-  const [book, setBook] = useState()
+  const [book, setBook] = useState({})
   const { id } = useParams()
   const volumeURL = `https://www.googleapis.com/books/v1/volumes/${id}?&key=${API_KEY}`
 
@@ -28,10 +28,10 @@ function SingleBook() {
   //-------debugging-----------
   console.log(volumeURL)
   console.log(book)
-  //console.log(book.saleInfo)
-  //console.log(book.saleInfo.country)
-  // const temp = book.saleInfo.country
-  // console.log(temp)
+  console.log(book.saleInfo)
+  console.log(book.saleInfo.country)
+  const temp = book.saleInfo.country
+  console.log(temp)
   //----------------------------
 
   if (book === undefined) {
@@ -44,9 +44,9 @@ function SingleBook() {
   //   //retailPrice = 'no price',
   //   isEbook = 'no printtype',
   // } = book.saleInfo
+  // console.log('saleability', saleability, isEbook)
   //----------------------------
 
-  // console.log('saleability', saleability, isEbook)
   // const {
   //   title = 'no title',
   //   subtitles = 'no subtitle',
