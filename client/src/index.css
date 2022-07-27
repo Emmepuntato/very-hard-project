@@ -343,3 +343,13 @@ nav {
 .center p {
   margin: auto;
 }
+
+.single-book {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 11fr;
+}
+.single-book-img {
+  grid-row: span 11;
+  min-height: 33vw;
+}
