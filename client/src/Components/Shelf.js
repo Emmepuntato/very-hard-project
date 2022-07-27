@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useGlobalContex } from '../Context'
+import { Link } from 'react-router-dom'
 
 function Shelf() {
   const { bookSearchInput, searchURL, filteredURL } = useGlobalContex()
@@ -26,12 +27,12 @@ function Shelf() {
   }
   useEffect(() => {
     console.log('searcURL re-rendered')
-    fetchBooks(searchURL)
+    fetchBooks(searchURL, setBooks)
   }, [searchURL])
 
   useEffect(() => {
     console.log('filteredURL re-rendered')
-    fetchBooks(filteredURL)
+    fetchBooks(filteredURL, setBooks)
   }, [filteredURL])
   if (books.length < 1) {
     return <div>'no results :('</div>
@@ -46,34 +47,37 @@ function Shelf() {
           publisher = '---//---',
           title = '---//---',
         } = item.volumeInfo
+        const id = item.id
         let authorsList
 
         if (authors !== undefined) {
           authorsList = authors.join(', ')
         }
         return (
-          <div className='shelf-book' key={index}>
-            <img
-              src={imageLinks.thumbnail || ''}
-              alt='thumbnail'
-              style={{ width: '12rem', height: '16rem' }}
-            />
-            <p
-              style={{
-                fontSize: '1.5rem',
-                maxHeight: '4rem',
-                textAlign: 'center',
-                overflow: 'hidden',
-              }}
-            >
-              {title.substring(0, 35)}
-            </p>
-            <p style={{ fontStyle: 'italic', margin: '0.2rem' }}>
-              {authorsList || authors}
-            </p>
-            <p style={{ fontSize: '0.7rem', margin: '0' }}>{categories}</p>
-            <p style={{ fontSize: '0.5rem', margin: '0' }}>{publisher}</p>
-          </div>
+          <Link to={`/books/${id}`}>
+            <article className='shelf-book' key={index}>
+              <img
+                src={imageLinks.thumbnail || ''}
+                alt='thumbnail'
+                style={{ width: '12rem', height: '16rem' }}
+              />
+              <p
+                style={{
+                  fontSize: '1.5rem',
+                  maxHeight: '4rem',
+                  textAlign: 'center',
+                  overflow: 'hidden',
+                }}
+              >
+                {title.substring(0, 35)}
+              </p>
+              <p style={{ fontStyle: 'italic', margin: '0.2rem' }}>
+                {authorsList || authors}
+              </p>
+              <p style={{ fontSize: '0.7rem', margin: '0' }}>{categories}</p>
+              <p style={{ fontSize: '0.5rem', margin: '0' }}>{publisher}</p>
+            </article>
+          </Link>
         )
       })}
     </div>
