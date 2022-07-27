@@ -14,6 +14,8 @@ const AppProvider = ({ children }) => {
       language: '',
       year: new Date().getFullYear(),
     },
+    searchURL: '',
+    filteredURL: '',
   }
 
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -22,8 +24,8 @@ const AppProvider = ({ children }) => {
     dispatch({ type: 'SEARCH', payload: { term } })
   }
 
-  const filterBookAPI = (filterList) => {
-    dispatch({ type: 'FILTER', payload: { filterList } })
+  const filterBookAPI = (title, filterList) => {
+    dispatch({ type: 'FILTER', payload: { title, filterList } })
   }
 
   return (

@@ -6,7 +6,7 @@ function Filter() {
   //filter by author, publisher, category (adv. isbn)
   //filter by language
   //filter by publish year
-  const { filterBookAPI } = useGlobalContex()
+  const { filterBookAPI, bookSearchInput } = useGlobalContex()
   const [author, setAuthor] = useState('')
   const [publisher, setPublisher] = useState('')
   const [category, setCategory] = useState('')
@@ -42,7 +42,7 @@ function Filter() {
       setAlert('year not in the plausible range')
     } else {
       console.log('submitted')
-      filterBookAPI(filters)
+      filterBookAPI(bookSearchInput.term, filters)
     }
   }
   return (
