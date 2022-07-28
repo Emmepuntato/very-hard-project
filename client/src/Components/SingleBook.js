@@ -28,56 +28,64 @@ function SingleBook() {
   //-------debugging-----------
   console.log(volumeURL)
   console.log(book)
-  console.log(book.saleInfo)
-  console.log(book.saleInfo.country)
-  const temp = book.saleInfo.country
-  console.log(temp)
+  // console.log(book.saleInfo)
+  // console.log(book.saleInfo.country)
+  // const temp = book.saleInfo.country
+  // console.log(temp)
   //----------------------------
 
   if (book === undefined) {
     return <div className='error'>No books found</div>
   }
 
-  //-------debugging-----------
-  // const {
-  //   saleability,
-  //   //retailPrice = 'no price',
-  //   isEbook = 'no printtype',
-  // } = book.saleInfo
-  // console.log('saleability', saleability, isEbook)
-  //----------------------------
+  const {
+    saleInfo: {
+      saleability: saleability = 'no sales',
+      retailPrice: retailPrice = 'no price',
+      isEbook: isEbook = 'no printtype',
+    } = {},
+  } = book
 
-  // const {
-  //   title = 'no title',
-  //   subtitles = 'no subtitle',
-  //   authors = 'no author',
-  //   categories = 'no categories',
-  //   imageLinks = 'no thumnail',
-  //   language = 'no lang aval.',
-  //   publisher = 'no publisher',
-  //   publishedDate = 'not published yet',
-  //   pageCount = 'no page count',
-  //   description = 'no description',
-  //   averageRatings = 'no ratings',
-  //   canonicalVolumeLink = ' no last',
-  // } = book.volumeInfo
+  const {
+    volumeInfo: {
+      title = 'no title',
+      subtitles = 'no subtitle',
+      authors = 'no author',
+      categories = 'no categories',
+      imageLinks = 'no thumnail',
+      language = 'no lang aval.',
+      publisher = 'no publisher',
+      publishedDate = 'not published yet',
+      pageCount = 'no page count',
+      description = 'no description',
+      averageRatings = 'no ratings',
+      canonicalVolumeLink = ' no last',
+    } = {},
+  } = book
   return (
     <section>
       <div className='single-book'>
         SingleBook
-        {/* <h1 className='title'>{title}</h1>
+        <h1 className='title'>{title}</h1>
+        <h2 className='subtitle'>{subtitles}</h2>
         <div className='single-book-img'>
           <img className='center' src={imageLinks.medium} alt='' />
         </div>
-        <h3>{authors || 'undefined'}</h3>
-        <h4>{publisher || 'undefined'}</h4>
-        <h4>{retailPrice || 'undefined'}</h4>
-        <p>{publishedDate || 'undefined'}</p>
-        <p>{description || 'undefined'}</p>
-        <p>{pageCount || 'undefined'}</p>
-        <p>{language || 'undefined'}</p>
-        <p>{averageRatings || 'undefined'}</p>
-        <p>{isEbook || 'undefined'}</p> */}
+        <h3>Author: {authors || 'not found'}</h3>
+        <h4>Publisher: {publisher || 'not found'}</h4>
+        <h4>Price: {retailPrice.amount || 'not found'}</h4>
+        <p>Released: {publishedDate || 'not found'}</p>
+        <p>Genres: {categories || 'not found'}</p>
+        <p>
+          {' '}
+          Description:
+          {description.replace('<p>', '').replace('</p>', '') || 'not found'}
+        </p>
+        <p>Page number: {pageCount || 'not found'}</p>
+        <p>Langueage: {language || 'not found'}</p>
+        <p>Ratings: {averageRatings || 'not found'}</p>
+        <p>E-Book availability: {isEbook.toString() || 'not found'}</p>
+        <p>Shop link: {canonicalVolumeLink}</p>
       </div>
     </section>
   )
