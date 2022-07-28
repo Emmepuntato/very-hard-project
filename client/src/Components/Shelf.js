@@ -54,8 +54,8 @@ function Shelf() {
           authorsList = authors.join(', ')
         }
         return (
-          <Link to={`/books/${id}`}>
-            <article className='shelf-book' key={index}>
+          <Link to={`/books/${id}`} key={index}>
+            <article className='shelf-book'>
               <img
                 src={imageLinks.thumbnail || ''}
                 alt='thumbnail'
