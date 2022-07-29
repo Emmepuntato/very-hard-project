@@ -5,6 +5,8 @@ const API_KEY = 'AIzaSyCstauv1GWKGRuQ5XyUWfSsy9_SUXbFy7I'
 
 function SingleBook() {
   const [book, setBook] = useState({})
+  const [moreDesc, setMoreDesc] = useState(false)
+  const [moreCat, setMoreCat] = useState(false)
   const { id } = useParams()
   const volumeURL = `https://www.googleapis.com/books/v1/volumes/${id}?&key=${API_KEY}`
 
@@ -40,9 +42,9 @@ function SingleBook() {
 
   const {
     saleInfo: {
-      saleability: saleability = 'no sales',
-      retailPrice: retailPrice = 'no price',
-      isEbook: isEbook = 'no printtype',
+      saleability = 'no sales',
+      retailPrice = 'no price',
+      isEbook = 'no printtype',
     } = {},
   } = book
 
@@ -57,35 +59,98 @@ function SingleBook() {
       publisher = 'no publisher',
       publishedDate = 'not published yet',
       pageCount = 'no page count',
-      description = 'no description',
       averageRatings = 'no ratings',
       canonicalVolumeLink = ' no last',
     } = {},
   } = book
+  let { volumeInfo: { description = '' } = {} } = book
+  description = description
+    .replace(/<\/?p>/gi, '')
+    .replace(/<\/?i>/gi, '')
+    .replace(/<\/?b>/gi, '')
+    .replace(/<\/?br>/gi, '')
   return (
     <section>
       <div className='single-book'>
-        SingleBook
         <h1 className='title'>{title}</h1>
-        <h2 className='subtitle'>{subtitles}</h2>
+        <h2 className={subtitles !== 'no subtitle' ? subtitles : 'null'}>
+          {subtitles}
+        </h2>
         <div className='single-book-img'>
-          <img className='center' src={imageLinks.medium} alt='' />
+          <img
+            className='center'
+            src={imageLinks.medium || imageLinks.thumbnail}
+            alt=''
+          />
         </div>
-        <h3>Author: {authors || 'not found'}</h3>
-        <h4>Publisher: {publisher || 'not found'}</h4>
-        <h4>Price: {retailPrice.amount || 'not found'}</h4>
-        <p>Released: {publishedDate || 'not found'}</p>
-        <p>Genres: {categories || 'not found'}</p>
+        <h3>
+          Author:
+          <br />
+          {authors || 'not found'}
+        </h3>
+        <h4>
+          Publisher:
+          <br />
+          {publisher || 'not found'}
+        </h4>
+        <h4>
+          Price:
+          <br />{' '}
+          {`${retailPrice.currencyCode} ${retailPrice.amount}` ||
+            saleability.replace(/_/g, ' ')}
+        </h4>
         <p>
-          {' '}
-          Description:
-          {description.replace('<p>', '').replace('</p>', '') || 'not found'}
+          Released:
+          <br /> {publishedDate || 'not found'}
         </p>
-        <p>Page number: {pageCount || 'not found'}</p>
-        <p>Langueage: {language || 'not found'}</p>
-        <p>Ratings: {averageRatings || 'not found'}</p>
-        <p>E-Book availability: {isEbook.toString() || 'not found'}</p>
-        <p>Shop link: {canonicalVolumeLink}</p>
+        <p>
+          Genres:
+          <br />{' '}
+          {(!moreCat
+            ? categories.slice(0, 2).join(', ')
+            : categories.join(', ')) || 'not available'}
+          <button
+            className='btn-show-more'
+            onClick={() => {
+              setMoreCat(!moreCat)
+            }}
+          >
+            {!moreCat ? ' ... show more' : 'show less'}
+          </button>
+        </p>
+        <p>
+          Description:
+          <br />
+          {(!moreDesc ? description.substring(0, 250) : description) ||
+            'not available'}
+          <button
+            className='btn-show-more'
+            onClick={() => {
+              setMoreDesc(!moreDesc)
+            }}
+          >
+            {!moreDesc ? ' ... show more' : 'show less'}
+          </button>
+        </p>
+        <p>
+          Page number:
+          <br /> {pageCount || 'not available'}
+        </p>
+        <p>
+          Language:
+          <br /> {language || 'not available'}
+        </p>
+        <p>
+          Ratings:
+          <br /> {averageRatings || 'not available'}
+        </p>
+        <p>
+          E-Book availability:
+          <br /> {isEbook.toString() || 'not found'}
+        </p>
+        <a href={canonicalVolumeLink}>
+          Shop link: <br /> {canonicalVolumeLink}
+        </a>
       </div>
     </section>
   )
