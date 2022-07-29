@@ -42,7 +42,7 @@ function Filter() {
       setAlert('year not in the plausible range')
     } else {
       console.log('submitted')
-      filterBookAPI(bookSearchInput.term, filters)
+      filterBookAPI(bookSearchInput, filters)
     }
   }
   return (
@@ -95,15 +95,19 @@ function Filter() {
           </li>
           <li>
             <label htmlFor='language'>language</label>
-            <input
-              type='text'
+            <select
               id='language'
               name='language'
-              value={lang}
               onChange={(e) => {
                 setLang(e.target.value)
               }}
-            />
+            >
+              <option value=''>select language</option>
+              <option value='it'>italian</option>
+              <option value='en'>english</option>
+              <option value='fr'>franch</option>
+              <option value='sp'>spanish</option>
+            </select>
           </li>
           <li>
             <label htmlFor='year'>year</label>

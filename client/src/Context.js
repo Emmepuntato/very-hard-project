@@ -6,7 +6,7 @@ const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
   const initialState = {
     data: localData,
-    bookSearchInput: '',
+    bookSearchInput: 'welcome',
     bookSearchFilter: {
       author: '',
       publisher: '',

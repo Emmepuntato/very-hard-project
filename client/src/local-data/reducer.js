@@ -7,7 +7,7 @@ export const reducer = (state, action) => {
       return {
         ...state,
         bookSearchInput: action.payload,
-        searchURL: `https://www.googleapis.com/books/v1/volumes?q=${adjStr}&key=${API_KEY}`,
+        searchURL: `https://www.googleapis.com/books/v1/volumes?q=${adjStr}&langRestrict=en&key=${API_KEY}`,
       }
     case 'FILTER':
       console.log('called reducer, type: FILTER, payload ', action.payload)
@@ -22,7 +22,9 @@ export const reducer = (state, action) => {
         .toLowerCase()
         .replaceAll(',', '')
         .replaceAll(' ', '%20')
-      const filterArray = newArray.concat(`&key=${API_KEY}`)
+      const filterArray = newArray.concat(
+        `&langRestrict=${lang}&key=${API_KEY}`
+      )
       console.log('newArray = ', filterArray)
       // const filteredURL = `https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}+inpublisher:${publ}+subject:${cat}&key=${API_KEY}`
 
