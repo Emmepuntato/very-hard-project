@@ -14,7 +14,7 @@ const AppProvider = ({ children }) => {
       language: '',
       year: new Date().getFullYear(),
     },
-    searchURL: '',
+    searchURL: 'https://www.googleapis.com/books/v1/volumes?q=welcome',
     filteredURL: '',
   }
 
