@@ -346,10 +346,44 @@ nav {
 
 .single-book {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   grid-template-rows: 11fr;
+  text-transform: none;
 }
 .single-book-img {
-  grid-row: span 11;
+  display: grid;
+  grid-row: span 12;
+  align-items: center;
+  justify-items: center;
   min-height: 33vw;
+}
+.single-book h3 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 1rem;
+}
+.single-book h4 {
+  text-align: center;
+  margin: 1rem;
+}
+
+.single-book p,
+a {
+  text-align: center;
+}
+
+.title {
+  grid-column: span 2;
+  text-align: center;
+  font-size: 2rem;
+}
+.subtitle {
+  grid-column: span 2;
+  text-align: center;
+}
+.btn-show-more {
+  font-size: 1.2rem;
+  border: none;
+  background: none;
+  color: var(--blue-violet-color-wheel);
 }
