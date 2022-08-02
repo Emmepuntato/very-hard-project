@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useGlobalContex } from '../Context'
 
 function Search() {
@@ -10,11 +10,14 @@ function Search() {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
+    // if (inputText) {
+    //   setInputText('Type Something here')
+    // }
     searchBookAPI(inputText)
   }
   return (
     <section className='form'>
-      <p>Book Search Engine</p>
+      <h1>Book Search</h1>
       <form
         onSubmit={(e) => {
           handleSubmit(e)
@@ -30,7 +33,9 @@ function Search() {
             handleChange(e)
           }}
         />
-        <button type='submit'>Search</button>
+        <button type='submit' className='btn-submit'>
+          Search
+        </button>
       </form>
     </section>
   )
