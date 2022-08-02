@@ -29,9 +29,9 @@ body {
 ul {
   list-style: none;
 }
-div {
+/* div {
   border: 1px solid gray;
-}
+} */
 a {
   text-decoration: none;
   text-transform: none;
@@ -286,20 +286,48 @@ nav {
 .bookpage {
   display: grid;
   grid-template-columns: 20% 1fr 1fr;
-  grid-template-rows: 6rem 1fr;
+  grid-template-rows: 13rem 1fr;
   gap: 2px;
 }
 .form {
   display: grid;
   align-items: center;
 }
+.form h1 {
+  padding-bottom: 1rem;
+  margin: auto;
+  font-size: 2rem;
+  color: var(--dogwood-rose);
+}
+.form form {
+  min-height: 2rem;
+  text-align: center;
+  min-width: 10rem;
+}
+.form input,
+.filter ul li {
+  width: 20rem;
+  height: 2rem;
+  font-size: 1.5rem;
+}
+.btn-submit {
+  position: relative;
+
+  top: -3px;
+  height: 2rem;
+  margin: 0 1rem;
+  padding: 0 1.5rem;
+  background-color: var(--tea-green);
+  border-width: 1px;
+}
+
 /* .bookpage div {
   background-color: pink;
   height: 14rem;
   width: inherit;
 } */
 .search:nth-child(1) {
-  height: 6rem;
+  height: 13rem;
   width: inherit;
   grid-column: span 3;
 }
@@ -322,16 +350,44 @@ nav {
   /* grid-template-columns: repeat(auto-fit, minmax(180px, 1 fr)); */
   grid-template-rows: 1fr 1fr 1fr;
 }
+.filter {
+  align-items: center;
+}
+.filter-list p {
+  text-align: center;
+  font-size: 2rem;
+  max-width: 7rem;
+  margin: 0.5rem;
+  font-weight: bold;
+  color: var(--dogwood-rose);
+}
+.filter-list li {
+  margin: 1rem;
+}
 .shelf-book {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 16rem 4rem 1fr 1fr;
+  grid-template-rows: 16rem 3rem 1fr 1fr;
   margin-top: 1rem;
 
   justify-items: center;
   align-items: center;
   max-height: 30rem;
   max-width: 30rem;
+}
+.shelf-book:hover {
+  transition: 0.7s;
+  transition-property: background;
+  background: linear-gradient(
+    rgba(241, 163, 129, 0.147),
+    rgba(147, 113, 175, 0.384)
+  );
+}
+.shelf-book img {
+  transition: 0.7s;
+}
+.shelf-book img:hover {
+  transform: scale(1.1);
 }
 
 .center {
@@ -349,6 +405,8 @@ nav {
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 11fr;
   text-transform: none;
+  padding-bottom: 4rem;
+  margin-bottom: 4rem;
 }
 .single-book-img {
   display: grid;
@@ -365,6 +423,7 @@ nav {
 .single-book h4 {
   text-align: center;
   margin: 1rem;
+  font-weight: normal;
 }
 
 .single-book p,
@@ -376,6 +435,7 @@ a {
   grid-column: span 2;
   text-align: center;
   font-size: 2rem;
+  text-decoration: underline;
 }
 .subtitle {
   grid-column: span 2;
@@ -387,3 +447,4 @@ a {
   background: none;
   color: var(--blue-violet-color-wheel);
 }
+/* -v-v-v-v-loading screen--v-v-v-v- */
