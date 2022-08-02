@@ -4,6 +4,7 @@ import { useGlobalContex } from '../Context'
 const API_KEY = 'AIzaSyCstauv1GWKGRuQ5XyUWfSsy9_SUXbFy7I'
 
 function SingleBook() {
+  const { loader } = useGlobalContex()
   const [book, setBook] = useState({})
   const [moreDesc, setMoreDesc] = useState(false)
   const [moreCat, setMoreCat] = useState(false)
@@ -12,24 +13,25 @@ function SingleBook() {
 
   const fetchBooks = async (url) => {
     console.log('API at: ', url)
+
     try {
       const response = await fetch(url)
       if (!response || undefined) console.log('errore no response')
       const data = await response.json()
       setBook(data)
       console.log('API successful')
+      console.log(data)
     } catch (error) {
-      console.log('\nERROR IN FETCHING DATA \n', error)
+      console.log('\nERROR IN FETCHING DATA\n', error)
     }
   }
 
   useEffect(() => {
-    console.log('api success')
     fetchBooks(volumeURL, setBook)
   }, [volumeURL])
   //-------debugging-----------
-  console.log(volumeURL)
-  console.log(book)
+  // console.log(volumeURL)
+  // console.log(book)
   // console.log(book.saleInfo)
   // console.log(book.saleInfo.country)
   // const temp = book.saleInfo.country
@@ -53,7 +55,7 @@ function SingleBook() {
       title = 'no title',
       subtitles = 'no subtitle',
       authors = 'no author',
-      categories = 'no categories',
+      categories = [],
       imageLinks = 'no thumnail',
       language = 'no lang aval.',
       publisher = 'no publisher',
@@ -69,6 +71,9 @@ function SingleBook() {
     .replace(/<\/?i>/gi, '')
     .replace(/<\/?b>/gi, '')
     .replace(/<\/?br>/gi, '')
+  // let authorsList = authors
+  // if (authors.length > 1 && authors !== undefined)
+  //   authorsList = authors.join(', ')
   return (
     <section>
       <div className='single-book'>
@@ -95,9 +100,10 @@ function SingleBook() {
         </h4>
         <h4>
           Price:
-          <br />{' '}
-          {`${retailPrice.currencyCode} ${retailPrice.amount}` ||
-            saleability.replace(/_/g, ' ')}
+          <br />
+          {retailPrice.amount
+            ? `${retailPrice.currencyCode} ${retailPrice.amount}`
+            : saleability.replace(/_/g, ' ')}
         </h4>
         <p>
           Released:
@@ -105,12 +111,14 @@ function SingleBook() {
         </p>
         <p>
           Genres:
-          <br />{' '}
-          {(!moreCat
-            ? categories.slice(0, 2).join(', ')
-            : categories.join(', ')) || 'not available'}
+          <br />
+          {categories.length > 2
+            ? (!moreCat
+                ? categories.slice(0, 2).join(', ')
+                : categories.join(', ')) || 'not available'
+            : categories.join(', ')}
           <button
-            className='btn-show-more'
+            className={categories.length > 2 ? 'btn-show-more' : 'null'}
             onClick={() => {
               setMoreCat(!moreCat)
             }}
@@ -133,7 +141,7 @@ function SingleBook() {
           </button>
         </p>
         <p>
-          Page number:
+          Page count:
           <br /> {pageCount || 'not available'}
         </p>
         <p>
@@ -145,10 +153,10 @@ function SingleBook() {
           <br /> {averageRatings || 'not available'}
         </p>
         <p>
-          E-Book availability:
-          <br /> {isEbook.toString() || 'not found'}
+          E-Book:
+          <br /> {isEbook ? 'Available' : 'Not Available'}
         </p>
-        <a href={canonicalVolumeLink}>
+        <a href={canonicalVolumeLink} style={{ textDecoration: 'underline' }}>
           Shop link: <br /> {canonicalVolumeLink}
         </a>
       </div>
