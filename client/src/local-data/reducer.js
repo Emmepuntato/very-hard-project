@@ -7,15 +7,31 @@ export const reducer = (state, action) => {
       return {
         ...state,
         bookSearchInput: action.payload,
-        searchURL: `https://www.googleapis.com/books/v1/volumes?q=${adjStr}&langRestrict=en&key=${API_KEY}`,
+        bookSearchFilter: {
+          author: '',
+          publisher: '',
+          genre: '',
+          language: '',
+          year: '',
+        },
+        searchURL: `https://www.googleapis.com/books/v1/volumes?q="${adjStr}"&printType=books&langRestrict=en&orderBy=newest&key=${API_KEY}`,
       }
     case 'FILTER':
       console.log('called reducer, type: FILTER, payload ', action.payload)
-      const { author, publ, cat, lang, year } = action.payload.filterList
+      const {
+        author = '',
+        publ = '',
+        cat = '',
+        lang = 'en',
+        year = '',
+      } = action.payload.filterList
       const { title } = action.payload
-      let array = [`https://www.googleapis.com/books/v1/volumes?q=${title}`]
-      if (author) array.push(`+inauthor:${author}`)
-      if (publ) array.push(`+inpublisher:${publ}`)
+      let array = [
+        `https://www.googleapis.com/books/v1/volumes?q="${title.term}"`,
+      ]
+      // use double quote for exact match
+      if (author) array.push(`+inauthor:"${author}"`)
+      if (publ) array.push(`+inpublisher:"${publ}"`)
       if (cat) array.push(`+subject:${cat}`)
       let newArray = array
         .toString()
@@ -23,7 +39,7 @@ export const reducer = (state, action) => {
         .replaceAll(',', '')
         .replaceAll(' ', '%20')
       const filterArray = newArray.concat(
-        `&langRestrict=${lang}&key=${API_KEY}`
+        `&langRestrict=${lang}&printType=books&orderBy=newest&key=${API_KEY}`
       )
       console.log('newArray = ', filterArray)
       // const filteredURL = `https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}+inpublisher:${publ}+subject:${cat}&key=${API_KEY}`
@@ -38,6 +54,13 @@ export const reducer = (state, action) => {
           year: year,
         },
         filteredURL: filterArray,
+      }
+    case 'LOADING':
+      console.log('called reducer, type: LOADING, payload ', action.payload)
+      const { condition } = action.payload
+      return {
+        ...state,
+        isLoading: condition,
       }
     default:
       throw new Error('No Dispatch Found')

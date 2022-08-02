@@ -6,16 +6,17 @@ const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
   const initialState = {
     data: localData,
+    isLoading: false,
     bookSearchInput: 'welcome',
     bookSearchFilter: {
       author: '',
       publisher: '',
       genre: '',
-      language: '',
-      year: new Date().getFullYear(),
+      language: 'en',
+      year: '',
     },
     searchURL: 'https://www.googleapis.com/books/v1/volumes?q=welcome',
-    filteredURL: '',
+    filteredURL: 'https://www.googleapis.com/books/v1/volumes?q=welcome',
   }
 
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -28,8 +29,14 @@ const AppProvider = ({ children }) => {
     dispatch({ type: 'FILTER', payload: { title, filterList } })
   }
 
+  const loader = (condition) => {
+    dispatch({ type: 'LOADING', payload: { condition } })
+  }
+
   return (
-    <AppContext.Provider value={{ ...state, searchBookAPI, filterBookAPI }}>
+    <AppContext.Provider
+      value={{ ...state, searchBookAPI, filterBookAPI, loader }}
+    >
       {children}
     </AppContext.Provider>
   )

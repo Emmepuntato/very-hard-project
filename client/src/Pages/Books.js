@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Search from '../Components/Search'
 import Filter from '../Components/Filter'
 import Shelf from '../Components/Shelf'
+import Loading from '../Components/Loading'
+import { useGlobalContex } from '../Context'
 
 function BookPage() {
+  //const { isLoading } = useGlobalContex()
+  const [isLoading, setIsLoading] = useState(false)
   return (
     <section className='bookpage'>
       <div className='search'>
@@ -17,7 +21,7 @@ function BookPage() {
         </div>
       </div>
       <div className='shelf'>
-        <Shelf />
+        {isLoading ? <Loading /> : <Shelf setIsLoading={setIsLoading} />}
       </div>
     </section>
   )
