@@ -79,7 +79,7 @@ function SingleBook() {
   return (
     <section>
       <button className='goback-btn'>
-        <Link to='/books'>torna indietro</Link>
+        <Link to='/books'>go back</Link>
       </button>
       <div className='single-book'>
         <h1 className='title'>{title}</h1>
@@ -118,10 +118,10 @@ function SingleBook() {
           Genres:
           <br />
           {categories.length > 2
-            ? (!moreCat
-                ? categories.slice(0, 2).join(', ')
-                : categories.join(', ')) || 'not available'
-            : categories.join(', ')}
+            ? !moreCat
+              ? categories.slice(0, 2).join(', ')
+              : categories.join(', ')
+            : categories.join(', ') || 'not available'}
           <button
             className={categories.length > 2 ? 'btn-show-more' : 'null'}
             onClick={() => {
@@ -137,7 +137,7 @@ function SingleBook() {
           {(!moreDesc ? description.substring(0, 250) : description) ||
             'not available'}
           <button
-            className='btn-show-more'
+            className={description.length > 2 ? 'btn-show-more' : 'null'}
             onClick={() => {
               setMoreDesc(!moreDesc)
             }}
@@ -165,6 +165,17 @@ function SingleBook() {
           Shop link: <br /> {canonicalVolumeLink}
         </a>
       </div>
+      <button
+        className='goback-btn'
+        style={{
+          position: 'unset',
+          margin: '0px 42vw',
+          marginBottom: '5rem',
+          padding: '0.5rem 6rem',
+        }}
+      >
+        <Link to='/books'>go back</Link>
+      </button>
     </section>
   )
 }
