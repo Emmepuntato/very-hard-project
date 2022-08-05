@@ -35,12 +35,12 @@ function Shelf({ setIsLoading }) {
 
   useEffect(() => {
     console.log('searcURL re-rendered')
-    fetchBooks(searchURL, setBooks)
+    fetchBooks(searchURL)
   }, [searchURL])
 
   useEffect(() => {
     console.log('filteredURL re-rendered')
-    fetchBooks(filteredURL, setBooks)
+    fetchBooks(filteredURL)
   }, [filteredURL])
 
   console.log('elements found ', itemCount)
