@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useGlobalContex } from '../Context'
+import { Link } from 'react-router-dom'
+
 const API_KEY = 'AIzaSyCstauv1GWKGRuQ5XyUWfSsy9_SUXbFy7I'
 
 function SingleBook() {
@@ -76,6 +78,9 @@ function SingleBook() {
   //   authorsList = authors.join(', ')
   return (
     <section>
+      <button className='goback-btn'>
+        <Link to='/books'>torna indietro</Link>
+      </button>
       <div className='single-book'>
         <h1 className='title'>{title}</h1>
         <h2 className={subtitles !== 'no subtitle' ? subtitles : 'null'}>
