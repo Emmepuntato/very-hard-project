@@ -458,4 +458,10 @@ a {
   background: none;
   color: var(--blue-violet-color-wheel);
 }
-/* -v-v-v-v-loading screen--v-v-v-v- */
+/* -v-v-v-v-Vegetables--v-v-v-v- */
+
+.add-article {
+  height: 13rem;
+  width: inherit;
+  text-align: center;
+}
