@@ -6,6 +6,7 @@ import About from './Pages/About'
 import Contacts from './Pages/Contacts'
 import BookPage from './Pages/Books'
 import SingleBook from './Components/SingleBook'
+import Vegetables from './Pages/Vegetables'
 
 function App() {
   const [data, setData] = useState()
@@ -34,6 +35,7 @@ function App() {
         <Route path='/contacts' element={<Contacts />} />
         <Route path='/books' element={<BookPage />} />
         <Route path='/books/:id' element={<SingleBook />} />
+        <Route path='vegetables' element={<Vegetables />} />
       </Routes>
     </Router>
   )
