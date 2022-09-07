@@ -8,7 +8,9 @@ function Home() {
         <div className='books'>
           <Link to='/books'>books</Link>
         </div>
-        <div className='vegetables'>vegetables</div>
+        <div className='vegetables'>
+          <Link to='/vegetables'>vegetables</Link>
+        </div>
       </section>
     </>
   )
