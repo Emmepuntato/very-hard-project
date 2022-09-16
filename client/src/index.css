@@ -6,6 +6,9 @@
   --tea-green: #ddf9c1ff;
   --mandarin: #ef8354ff;
 }
+* {
+  box-sizing: border-box;
+}
 .null,
 #null {
   display: none;
@@ -16,6 +19,7 @@ body {
   background-size: cover;
   box-sizing: border-box;
   max-width: 100vw;
+  min-width: 600px;
   height: fit-content;
   min-height: 50vw;
   margin: 0;
@@ -29,6 +33,7 @@ body {
 }
 ul {
   list-style: none;
+  padding: 0;
 }
 /* div {
   border: 1px solid gray;
@@ -461,7 +466,61 @@ a {
 /* -v-v-v-v-Vegetables--v-v-v-v- */
 
 .add-article {
-  height: 13rem;
+  margin: 2rem;
   width: inherit;
   text-align: center;
+}
+
+.creation-form {
+  margin: auto;
+  position: fixed;
+  inset: 0;
+  padding: 10rem;
+  background-color: rgba(128, 128, 128, 0.5);
+}
+
+.creation-form form {
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  padding: 2rem 5rem;
+  /* text-align: center; */
+  background-color: white;
+  border-radius: 3rem;
+}
+
+.creation-form p {
+  padding: 0.5rem 0;
+}
+
+.close-btn {
+  margin-left: 12rem;
+}
+
+.stand {
+  max-width: 75%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-gap: 1rem;
+  text-align: center;
+}
+.stand article {
+  border: 4px solid black;
+}
+.stand ul {
+}
+footer {
+  text-align: center;
+  margin: 2rem;
+  font-size: 2rem;
+}
+
+footer button {
+  background: var(--tea-green);
+  color: var(--blue-violet-color-wheel);
+  border-radius: 3px;
+  margin: 0.5rem 1.5rem;
+  font-size: 1.5rem;
+  padding: 0.3rem;
 }
