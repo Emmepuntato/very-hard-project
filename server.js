@@ -11,8 +11,6 @@ const MONGO_URI = process.env.MONGO_URI
 const employeesRouter = require('./routes/employees')
 const veggieRouter = require('./routes/veggie')
 
-var jsonParser = bodyParser.json()
-
 app.use(cors())
 app.use(express.json())
 app.use(
