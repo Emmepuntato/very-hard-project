@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function SearchForm({ setShowSearch }) {
+function SearchForm({ setShowSearch, setStand }) {
   const [vId, setVid] = useState('')
   const [vName, setVname] = useState('')
   const [vUnit, setVunit] = useState('')
@@ -10,6 +10,9 @@ function SearchForm({ setShowSearch }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    if (data.lenght == 0) {
+      /*error message*/
+    }
     submitToDB('http://localhost:4500/vegetables/database', data)
   }
 
@@ -25,7 +28,9 @@ function SearchForm({ setShowSearch }) {
           `/search?id=${vId}&name=${vName}&unit=${vUnit}&company=${companyName}`
       )
       const result = await response.json()
-      console.log(result)
+      console.log('fronte end got: ', result)
+      setStand(result)
+      setShowSearch(false)
     } catch (error) {
       console.log(error)
     }
