@@ -27,15 +27,21 @@ const findProduct = async (req, res) => {
   console.log('query: ', req.query)
   const { id, name, unit, company } = req.query
   const queryList = {}
-  id === '' || queryList.push(`vId: ${id}`)
-  name === '' || queryList.push(`vName: ${name}`)
-  unit === '' || queryList.push(`vUnit: ${unit}`)
-  company === '' || queryList.push(`companyName: ${company}`)
+  if (id) {
+    queryList.vId = id
+  }
+  if (name) {
+    queryList.vName = name
+  }
+  if (unit) {
+    queryList.vUnit = unit
+  }
+  if (company) {
+    queryList.companyName = company
+  }
   try {
-    const data = await VModel.find({
-      queryList,
-    })
-    console.log('search', queryList, 'results: ')
+    const data = await VModel.find(queryList)
+    console.log('search', queryList, data.length, ' results.')
     return data
   } catch (err) {
     console.log(err)
