@@ -43,7 +43,9 @@ function Vegetables() {
       </div>
 
       {showForm && <AddForm setShowForm={setShowForm} />}
-      {showSearch && <SearchForm setShowSearch={setShowSearch} />}
+      {showSearch && (
+        <SearchForm setShowSearch={setShowSearch} setStand={setStand} />
+      )}
 
       <VeggieStand stand={stand} />
     </main>
