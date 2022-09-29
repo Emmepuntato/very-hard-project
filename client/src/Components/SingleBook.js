@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 const API_KEY = 'AIzaSyCstauv1GWKGRuQ5XyUWfSsy9_SUXbFy7I'
 
 function SingleBook() {
-  const { loader } = useGlobalContex()
   const [book, setBook] = useState({})
   const [moreDesc, setMoreDesc] = useState(false)
   const [moreCat, setMoreCat] = useState(false)
