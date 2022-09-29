@@ -6,10 +6,14 @@ function Home() {
     <>
       <section className='homepage'>
         <div className='books'>
-          <Link to='/books'>books</Link>
+          <Link to='/books'>
+            <p>Books</p>
+          </Link>
         </div>
         <div className='vegetables'>
-          <Link to='/vegetables'>vegetables</Link>
+          <Link to='/vegetables'>
+            <p>Vegetables</p>
+          </Link>
         </div>
       </section>
     </>
