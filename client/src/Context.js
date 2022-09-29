@@ -6,7 +6,7 @@ const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
   const initialState = {
     data: localData,
-    isLoading: false,
+    // isLoading: false,
     bookSearchInput: 'welcome',
     bookSearchFilter: {
       author: '',
@@ -29,14 +29,12 @@ const AppProvider = ({ children }) => {
     dispatch({ type: 'FILTER', payload: { title, filterList } })
   }
 
-  const loader = (condition) => {
-    dispatch({ type: 'LOADING', payload: { condition } })
-  }
+  // const loader = (condition) => {
+  //   dispatch({ type: 'LOADING', payload: { condition } })
+  // }
 
   return (
-    <AppContext.Provider
-      value={{ ...state, searchBookAPI, filterBookAPI, loader }}
-    >
+    <AppContext.Provider value={{ ...state, searchBookAPI, filterBookAPI }}>
       {children}
     </AppContext.Provider>
   )
