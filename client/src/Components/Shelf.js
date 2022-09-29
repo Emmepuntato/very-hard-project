@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useGlobalContex } from '../Context'
 import { Link } from 'react-router-dom'
+import Loading from './Loading'
 
-function Shelf({ setIsLoading }) {
-  const { loader, searchURL, filteredURL } = useGlobalContex()
+function Shelf() {
+  const [isLoading, setIsLoading] = useState(false)
+  const { searchURL, filteredURL } = useGlobalContex()
   const API_KEY = 'AIzaSyCstauv1GWKGRuQ5XyUWfSsy9_SUXbFy7I'
   const [books, setBooks] = useState([])
   const [itemCount, setItemCount] = useState([])
@@ -16,16 +18,14 @@ function Shelf({ setIsLoading }) {
 
   const fetchBooks = async (url) => {
     console.log('API at: ', url)
-    //loader(true)
-    //setIsLoading(true)
+    setIsLoading(true)
     try {
       const response = await fetch(url)
       if (!response || undefined) console.log('error w/ fetchBooks')
       const data = await response.json()
       setBooks(data.items || [])
       setItemCount(data.totalItems)
-      //loader(false)
-      //setIsLoading(false)
+      setIsLoading(false)
       console.log('API successful')
       console.log('books', books)
     } catch (error) {
@@ -44,7 +44,12 @@ function Shelf({ setIsLoading }) {
   }, [filteredURL])
 
   console.log('elements found ', itemCount)
-  if (itemCount < 1) {
+
+  if (isLoading) {
+    return <Loading />
+  }
+
+  if (itemCount < 1 || itemCount === undefined) {
     return <div>'no results :('</div>
   }
 
