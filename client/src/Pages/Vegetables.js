@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { TiCloudStorage } from 'react-icons/ti'
+import { Link } from 'react-router-dom'
+
 import AddForm from '../Components/AddForm'
 import SearchForm from '../Components/SearchForm'
 import VeggieStand from '../Components/VeggieStand'
@@ -39,6 +40,9 @@ function Vegetables() {
           }}
         >
           Search Vegetables
+        </button>
+        <button className='sign-in'>
+          <Link to='/signin'>Sign-In</Link>
         </button>
       </div>
 
