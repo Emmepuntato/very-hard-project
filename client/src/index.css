@@ -250,7 +250,7 @@ nav {
 .homepage {
   display: flex;
   justify-content: space-around;
-
+  margin-top: 2rem;
   height: auto;
 }
 
@@ -328,7 +328,7 @@ nav {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 20% 1fr 1fr;
-  grid-template-rows: 13rem 1fr;
+  grid-template-rows: 13rem 1fr 5rem;
   gap: 2px;
 }
 .form {
@@ -383,18 +383,32 @@ nav {
   width: inherit;
 }
 .shelf:nth-child(3) {
-  height: fit-content;
+  height: 100vh;
   width: inherit;
   grid-column: span 2;
 }
 .shelf-grid {
-  display: grid;
-  /* align-content: center;
-  justify-content: center;*/
+  max-width: 75%;
   height: inherit;
-  grid-template-columns: 1fr 1fr 1fr;
-  /* grid-template-columns: repeat(auto-fit, minmax(180px, 1 fr)); */
-  grid-template-rows: 1fr 1fr 1fr;
+  overflow: scroll;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-gap: 1rem;
+  text-align: center;
+}
+.shelf-footer {
+  text-align: center;
+  margin: 1rem;
+  font-size: 2rem;
+}
+.shelf-footer button {
+  background: var(--tea-green);
+  color: var(--blue-violet-color-wheel);
+  border-radius: 3px;
+  margin: 0.5rem 1.5rem;
+  font-size: 1.5rem;
+  padding: 0.3rem;
 }
 .filter {
   align-items: center;
@@ -550,19 +564,24 @@ a {
   border: 4px solid black;
 }
 
-footer {
+.veg-footer {
   text-align: center;
   margin: 2rem;
   font-size: 2rem;
 }
 
-footer button {
+.veg-footer button {
   background: var(--tea-green);
   color: var(--blue-violet-color-wheel);
   border-radius: 3px;
   margin: 0.5rem 1.5rem;
   font-size: 1.5rem;
   padding: 0.3rem;
+}
+
+.sign-in {
+  position: relative;
+  left: 34rem;
 }
 
 /* -v-v-v-v--Loading Anim--v-v-v-v- */
