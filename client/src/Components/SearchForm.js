@@ -96,15 +96,15 @@ function SearchForm({ setShowSearch, setStand }) {
             <option value='€/kg'>€/kg</option>
             <option value='€/hg'>€/hg</option>
             <option value='€/g'>€/g</option>
-            <option value='€/pcs'>£/g</option>
+            <option value='€/pcs'>€/pcs</option>
             <option value='$/kg'>$/kg</option>
             <option value='$/hg'>$/hg</option>
             <option value='$/g'>$/g</option>
-            <option value='$/pcs'>£/g</option>
+            <option value='$/pcs'>$/pcs</option>
             <option value='£/kg'>£/kg</option>
             <option value='£/hg'>£/hg</option>
             <option value='£/g'>£/g</option>
-            <option value='£/pcs'>£/g</option>
+            <option value='£/pcs'>£/pcs</option>
           </select>
         </p>
         <p>
