@@ -54,7 +54,7 @@ function VeggieStand({ stand }) {
         })}
         {/* DONE //add the page system */}
       </section>
-      <footer>
+      <footer className='veg-footer'>
         <div>
           <button
             onClick={() => {
