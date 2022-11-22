@@ -7,6 +7,7 @@ import Contacts from './Pages/Contacts'
 import BookPage from './Pages/Books'
 import SingleBook from './Components/SingleBook'
 import Vegetables from './Pages/Vegetables'
+import Signin from './Pages/Signin'
 
 function App() {
   const [data, setData] = useState()
@@ -36,6 +37,7 @@ function App() {
         <Route path='/books' element={<BookPage />} />
         <Route path='/books/:id' element={<SingleBook />} />
         <Route path='vegetables' element={<Vegetables />} />
+        <Route path='signin' element={<Signin />} />
       </Routes>
     </Router>
   )
