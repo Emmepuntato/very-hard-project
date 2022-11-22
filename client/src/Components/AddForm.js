@@ -31,6 +31,9 @@ function AddForm({ setShowForm }) {
     e.preventDefault()
     console.log('hello from client')
     submitToDB('http://localhost:4500/vegetables/add', data)
+    //loading
+    setShowForm(false)
+    //creation confirmation
   }
   return (
     <aside className='creation-form'>
