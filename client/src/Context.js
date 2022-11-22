@@ -4,6 +4,7 @@ import { reducer } from './local-data/reducer'
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
+  const itemDisplayed = 18
   const initialState = {
     data: localData,
     // isLoading: false,
@@ -15,8 +16,8 @@ const AppProvider = ({ children }) => {
       language: 'en',
       year: '',
     },
-    searchURL: 'https://www.googleapis.com/books/v1/volumes?q=welcome',
-    filteredURL: 'https://www.googleapis.com/books/v1/volumes?q=welcome',
+    searchURL: `https://www.googleapis.com/books/v1/volumes?q=welcome&maxResults=${itemDisplayed}&langRestrict=en&orderBy=newest`,
+    filteredURL: `https://www.googleapis.com/books/v1/volumes?q=welcome&maxResults=${itemDisplayed}`,
   }
 
   const [state, dispatch] = useReducer(reducer, initialState)
