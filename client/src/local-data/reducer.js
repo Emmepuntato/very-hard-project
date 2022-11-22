@@ -1,4 +1,5 @@
 export const reducer = (state, action) => {
+  const itemDisplayed = 18
   const API_KEY = 'AIzaSyCstauv1GWKGRuQ5XyUWfSsy9_SUXbFy7I'
   switch (action.type) {
     case 'SEARCH':
@@ -14,7 +15,7 @@ export const reducer = (state, action) => {
           language: '',
           year: '',
         },
-        searchURL: `https://www.googleapis.com/books/v1/volumes?q="${adjStr}"&printType=books&langRestrict=en&orderBy=newest&key=${API_KEY}`,
+        searchURL: `https://www.googleapis.com/books/v1/volumes?q="${adjStr}"&maxResults=${itemDisplayed}&printType=books&langRestrict=en&orderBy=newest&key=${API_KEY}`,
       }
     case 'FILTER':
       console.log('called reducer, type: FILTER, payload ', action.payload)
@@ -62,6 +63,7 @@ export const reducer = (state, action) => {
         ...state,
         isLoading: condition,
       }
+
     default:
       throw new Error('No Dispatch Found')
   }
