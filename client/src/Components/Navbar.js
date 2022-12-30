@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { BiMenu } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 
@@ -10,13 +10,10 @@ function Navbar() {
   const [isSidebar, setIsSidebar] = useState(false)
   const navbar = useRef()
 
-  useEffect(() => {}, [])
   return (
     <nav>
       <div className='header' ref={navbar}>
-        <div className='nav-logo'>
-          <Link to='/'>logo</Link>
-        </div>
+        <Link to='/' className='nav-logo'></Link>
         <Menu />
         <div className='sidebar-icon'>
           <BiMenu

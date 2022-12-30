@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Search from '../Components/Search'
 import Filter from '../Components/Filter'
 import Shelf from '../Components/Shelf'
-//import { useGlobalContex } from '../Context'
 
 function BookPage() {
   return (

@@ -7,7 +7,6 @@ const AppProvider = ({ children }) => {
   const itemDisplayed = 18
   const initialState = {
     data: localData,
-    // isLoading: false,
     bookSearchInput: 'welcome',
     bookSearchFilter: {
       author: '',
@@ -29,10 +28,6 @@ const AppProvider = ({ children }) => {
   const filterBookAPI = (title, filterList) => {
     dispatch({ type: 'FILTER', payload: { title, filterList } })
   }
-
-  // const loader = (condition) => {
-  //   dispatch({ type: 'LOADING', payload: { condition } })
-  // }
 
   return (
     <AppContext.Provider value={{ ...state, searchBookAPI, filterBookAPI }}>

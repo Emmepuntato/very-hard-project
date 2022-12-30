@@ -6,15 +6,14 @@ const VModel = require('../server/models/vegetablesModel')
 const addVeggieToDB = async (clientForm) => {
   try {
     const newItem = await VModel.create(clientForm)
-    //insert a function to write this new insertion in a log file
     return 'veggie added'
   } catch (error) {
     console.log(error)
-    //write the error log file
   }
 }
 
 const getAllDB = async () => {
+  console.log('first')
   try {
     const data = await VModel.find()
     return data
@@ -22,9 +21,8 @@ const getAllDB = async () => {
     console.log(err)
   }
 }
-//fix this funk!!!
+
 const findProduct = async (req, res) => {
-  console.log('query: ', req.query)
   const { id, name, unit, company } = req.query
   const queryList = {}
   if (id) {
@@ -41,7 +39,7 @@ const findProduct = async (req, res) => {
   }
   try {
     const data = await VModel.find(queryList)
-    console.log('search', queryList, data.length, ' results.')
+
     return data
   } catch (err) {
     console.log(err)
@@ -49,8 +47,3 @@ const findProduct = async (req, res) => {
 }
 
 module.exports = { addVeggieToDB, getAllDB, findProduct }
-
-// const createTask = async (req, res) => {
-//   const task = await Task.create(req.body)
-//   res.status(201).json({ task })
-// }

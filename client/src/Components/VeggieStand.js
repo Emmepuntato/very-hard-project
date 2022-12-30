@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 function VeggieStand({ stand }) {
-  console.log('type of stand: ', typeof stand, 'length ', stand.length)
   const [currentPage, setCurrentPage] = useState([])
   const [pageNum, setPageNum] = useState(0)
   const itemDisplayed = 16
@@ -12,20 +11,13 @@ function VeggieStand({ stand }) {
     let temp = stand.slice(start, end + 1)
     if (!temp.length == 0) {
       setCurrentPage(temp)
+      console.log('currpag', currentPage)
     } else {
       pageCounter('-')
     }
-    console.log('start', start, 'end', end, 'length of temp ', temp.length)
   }
 
   const pageCounter = (operator) => {
-    // switch (operator) {
-    //   case '-':
-    //     pageNum >= 1 && setPageNum(pageNum - itemDisplayed)
-    //     break
-    //   case '+':
-    //     setPageNum(pageNum + itemDisplayed)
-    // }
     operator === '-'
       ? pageNum >= 1 && setPageNum(pageNum - itemDisplayed)
       : setPageNum(pageNum + itemDisplayed)
@@ -33,8 +25,12 @@ function VeggieStand({ stand }) {
 
   useEffect(() => {
     pageMaker()
+    //console.log('stand', stand)
   }, [stand, pageNum])
-  /* Add a "buy" button, more info button */
+  if (stand.length === 0) {
+    return <div className='alert-red'>No Item Found</div>
+  }
+
   return (
     <>
       <section className='stand'>
@@ -43,16 +39,17 @@ function VeggieStand({ stand }) {
           return (
             <article key={index}>
               <ul>
-                <li>{vId}</li>
-                <li>{vName}</li>
+                <li style={{ fontSize: '12px' }}>{vId}</li>
+                <li style={{ fontSize: '30px', fontWeight: '800' }}>{vName}</li>
                 <li>{vPrice}</li>
-                <li>{vUnit}</li>
-                <li>{companyName}</li>
+                <li style={{ fontSize: '12px' }}>{vUnit}</li>
+                <li style={{ fontWeight: '600', fontStyle: 'italic' }}>
+                  {companyName}
+                </li>
               </ul>
             </article>
           )
         })}
-        {/* DONE //add the page system */}
       </section>
       <footer className='veg-footer'>
         <div>
@@ -76,6 +73,5 @@ function VeggieStand({ stand }) {
     </>
   )
 }
-/* create a company page 4 each company with more info and all their products */
 
 export default VeggieStand

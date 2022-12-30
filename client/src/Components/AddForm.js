@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function AddForm({ setShowForm }) {
+function AddForm({ setShowForm, setStatus, status }) {
   const [vId, setVid] = useState('')
   const [vName, setVname] = useState('')
   const [vPrice, setVprice] = useState(0)
@@ -11,7 +11,6 @@ function AddForm({ setShowForm }) {
   const data = { vId, vName, vPrice, vUnit, companyName, createdBy }
 
   const submitToDB = async (url, data) => {
-    console.log('API at BackEnd: ', url)
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -20,8 +19,7 @@ function AddForm({ setShowForm }) {
         },
         body: JSON.stringify(data),
       })
-      const result = await response.json()
-      console.log(result)
+      await response.json()
     } catch (error) {
       console.log(error)
     }
@@ -29,11 +27,12 @@ function AddForm({ setShowForm }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('hello from client')
+
     submitToDB('http://localhost:4500/vegetables/add', data)
-    //loading
-    setShowForm(false)
-    //creation confirmation
+    setStatus(true)
+    setTimeout(() => {
+      setStatus(false)
+    }, 3000)
   }
   return (
     <aside className='creation-form'>
@@ -42,6 +41,7 @@ function AddForm({ setShowForm }) {
           handleSubmit(e)
         }}
       >
+        <div className='alert-green'>{status ? 'Item added!' : ''}</div>
         <p className='form-header'>
           Add Product
           <button

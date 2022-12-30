@@ -3,6 +3,7 @@ import {
   TiSocialTwitter,
   TiSocialYoutube,
 } from 'react-icons/ti'
+import React from 'react'
 const data = {
   menu: [
     { type: 'contacts', data: '', link: '/contacts' },

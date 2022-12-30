@@ -6,21 +6,16 @@ import Loading from './Loading'
 function Shelf() {
   const [isLoading, setIsLoading] = useState(false)
   const { searchURL, filteredURL } = useGlobalContex()
-  const API_KEY = 'AIzaSyCstauv1GWKGRuQ5XyUWfSsy9_SUXbFy7I'
   const [books, setBooks] = useState([])
   const [itemCount, setItemCount] = useState([])
   const [pageNum, setPageNum] = useState(0)
   const itemDisplayed = 18
   const [starting, setStarting] = useState(0)
 
-  // const customURL = `https://www.googleapis.com/books/v1/volumes?q=${
-  //   bookSearchInput.term || 'welcome'
-  // }&key=${API_KEY}`
   const altThumbnail =
     'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
 
   const fetchBooks = async (url) => {
-    console.log('API at: ', url)
     setIsLoading(true)
     try {
       const response = await fetch(url)
@@ -29,31 +24,22 @@ function Shelf() {
       setBooks(data.items || [])
       setItemCount(data.totalItems)
       setIsLoading(false)
-      console.log('API successful')
-      console.log('books', books, 'type of books', typeof books)
     } catch (error) {
       console.log('error -> ', error)
     }
   }
 
   useEffect(() => {
-    console.log('searcURL re-rendered')
     fetchBooks(searchURL.concat(`&startIndex=${starting}`))
     window.scrollTo(0, 0)
   }, [searchURL, starting])
 
   useEffect(() => {
-    console.log('filteredURL re-rendered')
     fetchBooks(filteredURL.concat(`&startIndex=${starting}`))
     window.scrollTo(0, 0)
   }, [filteredURL, starting])
 
-  console.log('elements found ', itemCount)
-
   const pageCounter = (operator) => {
-    // operator === '-'
-    //   ? pageNum >= 1 && setPageNum(pageNum - 1)
-    //   : setPageNum(pageNum + 1)
     switch (operator) {
       case '-':
         pageNum >= 1 && setPageNum(pageNum - 1)
@@ -63,6 +49,9 @@ function Shelf() {
         if (starting > itemCount) break
         setStarting(starting + itemDisplayed)
         setPageNum(pageNum + 1)
+        break
+      default:
+        break
     }
   }
 
@@ -81,7 +70,6 @@ function Shelf() {
             authors,
             categories = '---//---',
             imageLinks = altThumbnail,
-            publisher = '---//---',
             title = '---//---',
           } = item.volumeInfo
           const id = item.id

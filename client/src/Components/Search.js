@@ -10,9 +10,6 @@ function Search() {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    // if (inputText) {
-    //   setInputText('Type Something here')
-    // }
     searchBookAPI(inputText)
   }
   return (

@@ -1,9 +1,8 @@
 export const reducer = (state, action) => {
   const itemDisplayed = 18
-  const API_KEY = 'AIzaSyCstauv1GWKGRuQ5XyUWfSsy9_SUXbFy7I'
+  const API_KEY = process.env.API_KEY
   switch (action.type) {
     case 'SEARCH':
-      console.log('called reducer, type: SEARCH, payload ', action.payload)
       const adjStr = action.payload.term.replace(' ', '%20').toLowerCase()
       return {
         ...state,
@@ -18,7 +17,6 @@ export const reducer = (state, action) => {
         searchURL: `https://www.googleapis.com/books/v1/volumes?q="${adjStr}"&maxResults=${itemDisplayed}&printType=books&langRestrict=en&orderBy=newest&key=${API_KEY}`,
       }
     case 'FILTER':
-      console.log('called reducer, type: FILTER, payload ', action.payload)
       const {
         author = '',
         publ = '',
@@ -42,8 +40,6 @@ export const reducer = (state, action) => {
       const filterArray = newArray.concat(
         `&langRestrict=${lang}&printType=books&orderBy=newest&key=${API_KEY}`
       )
-      console.log('newArray = ', filterArray)
-      // const filteredURL = `https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}+inpublisher:${publ}+subject:${cat}&key=${API_KEY}`
 
       return {
         ...state,
@@ -57,7 +53,6 @@ export const reducer = (state, action) => {
         filteredURL: filterArray,
       }
     case 'LOADING':
-      console.log('called reducer, type: LOADING, payload ', action.payload)
       const { condition } = action.payload
       return {
         ...state,

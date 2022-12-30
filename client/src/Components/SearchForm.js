@@ -5,32 +5,35 @@ function SearchForm({ setShowSearch, setStand }) {
   const [vName, setVname] = useState('')
   const [vUnit, setVunit] = useState('')
   const [companyName, setCompanyName] = useState('')
+  const [alert, setAlert] = useState(false)
 
-  const data = { vId, vName, vUnit, companyName }
+  const tempData = [vId, vName, vUnit, companyName]
+  const data = tempData.filter((item) => item !== '')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (data.lenght == 0) {
-      /*error message*/
-    }
-    submitToDB('http://localhost:4500/vegetables/database', data)
+    if (data.length === 0) {
+      setAlert(true)
+      setTimeout(() => {
+        setAlert(false)
+      }, 2000)
+    } else submitToDB('http://localhost:4500/vegetables/database', data)
   }
 
   const submitToDB = async (url, data) => {
-    console.log(
-      'API at BackEnd: ',
-      url +
-        `/search?id=${vId}&name=${vName}&unit=${vUnit}&company=${companyName}`
-    )
     try {
       const response = await fetch(
         url +
           `/search?id=${vId}&name=${vName}&unit=${vUnit}&company=${companyName}`
       )
       const result = await response.json()
-      console.log('fronte end got: ', result)
-      setStand(result)
-      setShowSearch(false)
+      if (result === []) {
+        setStand('no item')
+        console.log('no item')
+      } else {
+        setStand(result)
+        setShowSearch(false)
+      }
     } catch (error) {
       console.log(error)
     }
@@ -43,6 +46,9 @@ function SearchForm({ setShowSearch, setStand }) {
           handleSubmit(e)
         }}
       >
+        <div className='alert-red'>
+          {alert ? 'Fill at least one field' : ''}
+        </div>
         <p className='form-header'>
           Search
           <button

@@ -15,25 +15,27 @@ function About() {
     fetchEmployees()
   }, [])
 
-  //fetch data from server w/ useEffect
-  //store in useState or globalContext
-  //display inside component
   return (
-    <section className='about-page'>
-      <ul>
-        {profile.map((item, index) => {
-          return (
-            <div key={index} className='profile-box'>
-              <img src={item.img} alt='image' />
-              <div className='profile-text'>
-                <p>{item.name}</p>
-                <div>{item.bio}</div>
+    <>
+      <div style={{ textAlign: 'center', fontSize: '35px' }}>
+        illustrative purpose only
+      </div>
+      <section className='about-page'>
+        <ul>
+          {profile.map((item, index) => {
+            return (
+              <div key={index} className='profile-box'>
+                <img src={item.img} alt='profile pic not found' />
+                <div className='profile-text'>
+                  <p>{item.name}</p>
+                  <div>{item.bio}</div>
+                </div>
               </div>
-            </div>
-          )
-        })}
-      </ul>
-    </section>
+            )
+          })}
+        </ul>
+      </section>
+    </>
   )
 }
 

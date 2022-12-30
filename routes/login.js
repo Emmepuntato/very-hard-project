@@ -2,15 +2,11 @@ const express = require('express')
 const router = express.Router()
 
 //------Add here functions to call for each route------//
-const fetchData = require('../controllers/employees')
+const addNewUser = require('../controllers/login')
 //-----------------------------------------------------//
 
-router
-  .route('/about')
-  .post(() => {})
-  .get(fetchData)
-
-router.route('/').get((req, res) => {
-  res.sendStatus(200)
+router.route('/').post(async (req, res) => {
+  const response = await addNewUser(req.body, res)
 })
+
 module.exports = router

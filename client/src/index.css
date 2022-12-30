@@ -6,7 +6,7 @@
   --tea-green: #ddf9c1ff;
   --mandarin: #ef8354ff;
   --background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.4)),
-    url('../images/wallpaper.jpeg');
+    url('./images/wallpaper.jpeg');
   max-width: 100vw;
   min-width: 600px;
   height: fit-content;
@@ -37,6 +37,7 @@ body {
   color: rgb(18, 16, 116);
   line-height: 1.5;
   font-size: 1rem;
+  text-transform: capitalize;
 }
 ul {
   list-style: none;
@@ -50,6 +51,15 @@ a {
   text-transform: none;
   color: inherit;
   text-transform: capitalize;
+}
+
+button {
+  background: var(--tea-green);
+  color: var(--blue-violet-color-wheel);
+  border-radius: 3px;
+  margin: 0.5rem 1.5rem;
+  font-size: 1.5rem;
+  padding: 0.3rem;
 }
 
 #root .App {
@@ -75,9 +85,27 @@ nav {
   font-weight: bold;
   padding: 0.5rem 4rem;
   border: none;
-  border-radius: 50%;
+  border-radius: 10%;
+  font-size: 2rem;
 }
-.nav-logo:hover,
+.nav-logo {
+  background: url('./images/logo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10%;
+  height: 10rem;
+  width: 10rem;
+}
+.nav-logo:hover {
+  cursor: pointer;
+  background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.4)),
+    url('./images/logo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10%;
+  height: 10rem;
+  width: 10rem;
+}
 .menu li:hover,
 .nav-links li:hover {
   color: var(--vivid-sky-blue);
@@ -101,6 +129,21 @@ nav {
     #57c4e5 68%
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#383838', endColorstr='#57c4e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.contacts-page {
+  margin: 10vh;
+  padding: 3vh;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 650;
+  background-color: rgba(165, 229, 248, 0.537);
+}
+.contacts-page a {
+  text-decoration: underline;
+}
+.contacts-page a:hover {
+  color: #565190;
 }
 
 .menu {
@@ -211,12 +254,12 @@ nav {
   padding: 0;
 }
 .profile-box {
+  background-color: rgba(239, 130, 84, 0.71);
   display: flex;
   justify-content: left;
   align-items: center;
   margin: 1rem;
   padding: 1rem;
-  border: 0.3rem groove black;
   border-radius: 0.3rem;
 }
 .about-page img {
@@ -234,7 +277,6 @@ nav {
   max-height: 250px;
   max-width: 74%;
   font-size: larger;
-  border: 0.15rem dotted black;
 }
 .profile-text p {
   text-transform: capitalize;
@@ -269,7 +311,7 @@ nav {
 
 .books {
   background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.35)),
-    url('../images/books.jpeg');
+    url('./images/books.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 60%;
@@ -277,7 +319,7 @@ nav {
 }
 .books:hover {
   background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.75)),
-    url('../images/books.jpeg');
+    url('./images/books.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 60%;
@@ -304,7 +346,7 @@ nav {
 
 .vegetables {
   background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.4)),
-    url('../images/vegetables.jpeg');
+    url('./images/vegetables.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 0%;
@@ -312,7 +354,7 @@ nav {
 }
 .vegetables:hover {
   background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.75)),
-    url('../images/vegetables.jpeg');
+    url('./images/vegetables.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 0%;
@@ -351,8 +393,8 @@ nav {
 }
 .form input,
 .filter ul li {
-  width: 20rem;
-  height: 2rem;
+  width: auto;
+  height: auto;
   font-size: 1.5rem;
 }
 .btn-submit {
@@ -466,11 +508,15 @@ nav {
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 11fr;
   text-transform: none;
-  padding-bottom: 4rem;
-  margin-bottom: 4rem;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+.book-info {
+  background-color: rgba(137, 227, 255, 0.549);
+  border-radius: 5px;
+  padding: 2rem;
 }
 .goback-btn {
-  position: absolute;
   background: var(--tea-green);
   color: var(--blue-violet-color-wheel);
   border-radius: 3px;
@@ -503,9 +549,13 @@ a {
 }
 
 .title {
+  color: var(--dogwood-rose);
+  background-color: rgba(83, 19, 136, 0.855);
   grid-column: span 2;
+  margin-top: 1rem;
+  padding: 1rem;
   text-align: center;
-  font-size: 2rem;
+  font-size: 3rem;
   text-decoration: underline;
 }
 .subtitle {
@@ -543,6 +593,21 @@ a {
   background-color: white;
   border-radius: 3rem;
 }
+.creation-form .alert-green {
+  text-align: center;
+  font-weight: 800;
+  color: #05b853;
+}
+.creation-form .alert-red {
+  text-align: center;
+  font-weight: 800;
+  color: red;
+}
+.alert-red {
+  text-align: center;
+  font-weight: 800;
+  color: red;
+}
 
 .creation-form p {
   padding: 0.5rem 0;
@@ -562,6 +627,8 @@ a {
 }
 .stand article {
   border: 4px solid black;
+  background-color: rgba(192, 237, 251, 0.838);
+  border-radius: 10px;
 }
 
 .veg-footer {

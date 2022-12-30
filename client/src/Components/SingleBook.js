@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useGlobalContex } from '../Context'
 import { Link } from 'react-router-dom'
 
 const API_KEY = 'AIzaSyCstauv1GWKGRuQ5XyUWfSsy9_SUXbFy7I'
@@ -13,15 +12,11 @@ function SingleBook() {
   const volumeURL = `https://www.googleapis.com/books/v1/volumes/${id}?&key=${API_KEY}`
 
   const fetchBooks = async (url) => {
-    console.log('API at: ', url)
-
     try {
       const response = await fetch(url)
       if (!response || undefined) console.log('errore no response')
       const data = await response.json()
       setBook(data)
-      console.log('API successful')
-      console.log(data)
     } catch (error) {
       console.log('\nERROR IN FETCHING DATA\n', error)
     }
@@ -30,14 +25,6 @@ function SingleBook() {
   useEffect(() => {
     fetchBooks(volumeURL, setBook)
   }, [volumeURL])
-  //-------debugging-----------
-  // console.log(volumeURL)
-  // console.log(book)
-  // console.log(book.saleInfo)
-  // console.log(book.saleInfo.country)
-  // const temp = book.saleInfo.country
-  // console.log(temp)
-  //----------------------------
 
   if (book === undefined) {
     return <div className='error'>No books found</div>
@@ -88,81 +75,89 @@ function SingleBook() {
         <div className='single-book-img'>
           <img
             className='center'
-            src={imageLinks.medium || imageLinks.thumbnail}
+            src={imageLinks.smallThumbnail}
+            style={{ width: '32rem', margin: '5rem' }}
             alt=''
           />
         </div>
-        <h3>
-          Author:
-          <br />
-          {authors || 'not found'}
-        </h3>
-        <h4>
-          Publisher:
-          <br />
-          {publisher || 'not found'}
-        </h4>
-        <h4>
-          Price:
-          <br />
-          {retailPrice.amount
-            ? `${retailPrice.currencyCode} ${retailPrice.amount}`
-            : saleability.replace(/_/g, ' ')}
-        </h4>
-        <p>
-          Released:
-          <br /> {publishedDate || 'not found'}
-        </p>
-        <p>
-          Genres:
-          <br />
-          {categories.length > 2
-            ? !moreCat
-              ? categories.slice(0, 2).join(', ')
-              : categories.join(', ')
-            : categories.join(', ') || 'not available'}
-          <button
-            className={categories.length > 2 ? 'btn-show-more' : 'null'}
-            onClick={() => {
-              setMoreCat(!moreCat)
-            }}
+        <div className='book-info'>
+          <h3>
+            Author:
+            <br />
+            {authors || 'not found'}
+          </h3>
+          <h4>
+            Publisher:
+            <br />
+            {publisher || 'not found'}
+          </h4>
+          <h4>
+            Price:
+            <br />
+            {retailPrice.amount
+              ? `${retailPrice.currencyCode} ${retailPrice.amount}`
+              : saleability.replace(/_/g, ' ')}
+          </h4>
+          <p>
+            Released:
+            <br /> {publishedDate || 'not found'}
+          </p>
+          <p>
+            Genres:
+            <br />
+            {categories.length > 2
+              ? !moreCat
+                ? categories.slice(0, 2).join(', ')
+                : categories.join(', ')
+              : categories.join(', ') || 'not available'}
+            <button
+              className={categories.length > 2 ? 'btn-show-more' : 'null'}
+              onClick={() => {
+                setMoreCat(!moreCat)
+              }}
+            >
+              {!moreCat ? ' ... show more' : 'show less'}
+            </button>
+          </p>
+          <p>
+            Description:
+            <br />
+            {(!moreDesc ? description.substring(0, 250) : description) ||
+              'not available'}
+            <button
+              className={description.length > 2 ? 'btn-show-more' : 'null'}
+              onClick={() => {
+                setMoreDesc(!moreDesc)
+              }}
+            >
+              {!moreDesc ? ' ... show more' : 'show less'}
+            </button>
+          </p>
+          <p>
+            Page count:
+            <br /> {pageCount || 'not available'}
+          </p>
+          <p>
+            Language:
+            <br /> {language || 'not available'}
+          </p>
+          <p>
+            Ratings:
+            <br /> {averageRatings || 'not available'}
+          </p>
+          <p>
+            E-Book:
+            <br /> {isEbook ? 'Available' : 'Not Available'}
+          </p>
+          <a
+            href={canonicalVolumeLink}
+            target='_blank'
+            rel='noopener noreferrer'
+            style={{ textDecoration: 'underline', textAlign: 'center' }}
           >
-            {!moreCat ? ' ... show more' : 'show less'}
-          </button>
-        </p>
-        <p>
-          Description:
-          <br />
-          {(!moreDesc ? description.substring(0, 250) : description) ||
-            'not available'}
-          <button
-            className={description.length > 2 ? 'btn-show-more' : 'null'}
-            onClick={() => {
-              setMoreDesc(!moreDesc)
-            }}
-          >
-            {!moreDesc ? ' ... show more' : 'show less'}
-          </button>
-        </p>
-        <p>
-          Page count:
-          <br /> {pageCount || 'not available'}
-        </p>
-        <p>
-          Language:
-          <br /> {language || 'not available'}
-        </p>
-        <p>
-          Ratings:
-          <br /> {averageRatings || 'not available'}
-        </p>
-        <p>
-          E-Book:
-          <br /> {isEbook ? 'Available' : 'Not Available'}
-        </p>
-        <a href={canonicalVolumeLink} style={{ textDecoration: 'underline' }}>
-          Shop link: <br /> {canonicalVolumeLink}
-        </a>
+            Shop link: <br /> {canonicalVolumeLink}
+          </a>
+        </div>
       </div>
       <button
         className='goback-btn'

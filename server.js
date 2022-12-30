@@ -1,8 +1,7 @@
 const express = require('express')
 require('dotenv').config()
 const cors = require('cors')
-const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
+
 const connectDB = require('./server/connect')
 
 const app = express()
@@ -40,17 +39,3 @@ const startServer = async () => {
 }
 
 startServer()
-
-// const start = async () => {
-//   try {
-//     await connectDB(process.env.MONGO_URI)
-//     app.listen(
-//       port,
-//       console.log(`Server is listening on http://localhost:${port}`)
-//     )
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
-
-// start()

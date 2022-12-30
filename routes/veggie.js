@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+let maxDbItem = 0
 
 //------Add here functions to call for each route------//
 const {
@@ -14,14 +15,14 @@ const {
 router
   .route('/add')
   .post(async (req, res) => {
-    console.log('hello from server')
-    console.log(req.body)
-    const response = await addVeggieToDB(req.body)
-    res.json(response).status(200)
+    if (maxDbItem <= 1000) {
+      const response = await addVeggieToDB(req.body)
+      res.json(response).status(200)
+    } else throw new Error('Database full. No more entries, sorry.')
   })
   .get((req, res) => {
     //add a server status check function
-    console.log('router working, api working')
+
     res.sendStatus(200)
   })
 
@@ -30,13 +31,12 @@ router
   .route('/database')
   .post(() => {})
   .get(async (req, res) => {
-    console.log('hit vegetables/database')
     const query = await getAllDB()
+    console.log(query)
     res.json(query).status(200)
   })
 
 router.route('/database/search').get(async (req, res) => {
-  console.log('hit /database/search')
   const query = await findProduct(req, res)
   res.json(query).status(200)
 })
